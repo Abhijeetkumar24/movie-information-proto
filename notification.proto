@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package notification;
+
+service NotificationService {
+  rpc AddMovie (AddMovieRequest) returns (AddMovieResponse) {};
+}
+
+message AddMovieRequest {
+  string msg = 1;
+}
+
+message AddMovieResponse {
+  string msg = 1;
+  string status = 2;
+}

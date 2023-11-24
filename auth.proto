@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthService {
+  rpc Signup (SignupRequest) returns (SignupResponse) {};
+  rpc SignupVerification (VerificationRequest) returns (VerificationResponse) {};	
+  rpc GetToken (Credentials) returns (TokenResponse) {};
+  rpc Guard (Token) returns (GuardResponse) {};
+  rpc GetNameEmail (NameEmailRequest) returns (NameEmailResponse) {};
+  rpc Logout (LogoutRequest) returns (LogoutResponse) {};
+
+}
+
+message SignupRequest{
+  string name = 1;
+  string email = 2;
+  string password = 3;
+  repeated string role = 4;
+  string notification = 5;
+}
+
+message SignupResponse{
+  string message = 1;
+  string status = 2;
+}
+
+message VerificationRequest{
+  string otp = 1;
+}
+
+message VerificationResponse{
+  string message = 1;
+  string status = 2;
+}
+
+message Credentials {
+  string email = 1;
+  string password = 2;
+  string deviceId = 3;
+}
+
+message TokenResponse {
+  string message = 1;
+  string status = 2;
+  string token = 3;
+}
+
+message Token {
+  string token = 1;
+}
+
+message GuardResponse {
+  bool valid = 1;
+  string userId = 2;
+  string role = 3;
+}
+
+
+message NameEmailRequest {
+  string id = 1;
+}
+
+message NameEmailResponse {
+  string name = 1;
+  string email = 2;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message LogoutResponse {
+  string message = 1;
+  string status = 2;
+}
